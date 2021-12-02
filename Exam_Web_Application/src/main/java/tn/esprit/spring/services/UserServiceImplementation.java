@@ -38,4 +38,12 @@ public class UserServiceImplementation implements UserService {
 		return local;
 	}
 
+
+
+	@Override
+	public void deleteUser(Long userId) {
+		this.ur.deleteById(userId);
+		
+	}
+
 }

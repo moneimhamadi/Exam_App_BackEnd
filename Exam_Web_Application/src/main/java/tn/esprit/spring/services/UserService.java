@@ -8,5 +8,6 @@ import tn.esprit.spring.entities.UserRole;
 public interface UserService {
 
 	public User createUser(User user,Set<UserRole> userroles);
+	public void deleteUser(Long userId);
 	
 }

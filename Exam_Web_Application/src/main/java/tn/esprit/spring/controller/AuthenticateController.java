@@ -8,17 +8,16 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import tn.esprit.spring.config.JwtUtils;
 import tn.esprit.spring.entities.JwtRequest;
 import tn.esprit.spring.entities.JwtResponse;
 import tn.esprit.spring.services.UserDetailsServiceImpl;
 
-@RestController
+@Controller
 @CrossOrigin
 public class AuthenticateController {
 
@@ -47,7 +46,7 @@ public class AuthenticateController {
 	
 	private void authenticate(String username, String password) throws Exception{
 		try {
-			this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
 		} catch (DisabledException e) {
 			throw new Exception("User Diasbaled"+e.getMessage());
 		}

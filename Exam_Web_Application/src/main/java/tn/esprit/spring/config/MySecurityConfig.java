@@ -23,6 +23,9 @@ import tn.esprit.spring.services.UserDetailsServiceImpl;
 public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
+	
+	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
 	
 	@Autowired
@@ -55,7 +58,7 @@ protected void configure(HttpSecurity http) throws Exception {
 		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 		.and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.addFilterBefore(JwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		
 }
 }

@@ -12,17 +12,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import tn.esprit.spring.config.JwtUtils;
 import tn.esprit.spring.entities.JwtRequest;
 import tn.esprit.spring.entities.JwtResponse;
 import tn.esprit.spring.services.UserDetailsServiceImpl;
 
-@Controller
+@RestController
 @CrossOrigin
 public class AuthenticateController {
 
 	@Autowired 
-	private AuthenticationManager authenticationManager; 
+	AuthenticationManager authenticationManager; 
 	@Autowired
 	private UserDetailsServiceImpl userDetailsServiceImpl;
 	@Autowired
@@ -43,6 +45,7 @@ public class AuthenticateController {
 		
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
+	
 	
 	private void authenticate(String username, String password) throws Exception{
 		try {
